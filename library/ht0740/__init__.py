@@ -3,7 +3,7 @@ from i2cdevice import Device, Register, BitField
 __version__ = '0.0.1'
 
 
-class IO_ITEM:
+class IOItem:
     def __init__(self, i2c_object, pin_io, inverted=False):
         self.enabled = True
         self.status = False
@@ -81,7 +81,7 @@ class PCA9554A:
         self.switch_status = False
 
 
-class SWITCH:
+class Switch:
 
     def __init__(self, i2c_addr=0x38, i2c_dev=None):
         self._i2c_addr = i2c_addr
@@ -92,8 +92,8 @@ class SWITCH:
         self.switch_io = 3
 
         self.io_controller = PCA9554A(self._i2c_addr, self._i2c_dev)
-        self.led = IO_ITEM(self.io_controller._pca9554a, self.led_io, inverted=True)
-        self.switch = IO_ITEM(self.io_controller._pca9554a, self.switch_io)
+        self.led = IOItem(self.io_controller._pca9554a, self.led_io, inverted=True)
+        self.switch = IOItem(self.io_controller._pca9554a, self.switch_io)
 
     def on(self):
         self.led.on()
@@ -118,7 +118,7 @@ if __name__ == "__main__":
     import time
     bus = smbus.SMBus(1)
 
-    switch = SWITCH(i2c_addr=[0x38, 0x39, 0x3A, 0x3B], i2c_dev=bus)
+    switch = Switch(i2c_addr=[0x38, 0x39, 0x3A, 0x3B], i2c_dev=bus)
 
     while 1:
 
