@@ -20,7 +20,6 @@ class IOItem:
 
             if self.inverted:
                 self.i2c_object.OUTPUT.set_value(self.state() & ~(1 << self.pin_io))
-                print('on', self.state() & ~(1 << self.pin_io))
 
             else:
                 self.i2c_object.OUTPUT.set_value(self.state() | (1 << self.pin_io))
