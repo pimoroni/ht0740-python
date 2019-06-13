@@ -20,6 +20,3 @@ def test_setup():
     switch.enable()
     switch.on()
     switch.off()
-
-
-
