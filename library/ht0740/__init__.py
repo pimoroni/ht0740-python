@@ -110,19 +110,3 @@ class Switch:
     def enable(self):
         self.led.enable()
         self.switch.enable()
-
-
-if __name__ == "__main__":
-
-    import smbus
-    import time
-    bus = smbus.SMBus(1)
-
-    switch = Switch(i2c_addr=[0x38, 0x39, 0x3A, 0x3B], i2c_dev=bus)
-
-    while 1:
-
-        switch.on()
-        time.sleep(0.5)
-        switch.off()
-        time.sleep(0.5)

@@ -38,17 +38,17 @@ classifiers = ['Development Status :: 4 - Beta',
                'Topic :: System :: Hardware']
 
 setup(
-    name='{{LIBNAME}}',
+    name='ht0740',
     version='0.0.1',
-    author='Philip Howard',
-    author_email='phil@pimoroni.com',
-    description="""{{DESCRIPTION}}""",
+    author='Gee Bartlett',
+    author_email='gee@pimoroni.com',
+    description="""Python library for the HT0740 Big Damn Switch""",
     long_description=open('README.rst').read() + '\n' + open('CHANGELOG.txt').read(),
     license='MIT',
     keywords='Raspberry Pi',
     url='http://www.pimoroni.com',
-    project_urls={'GitHub': 'https://www.github.com/pimoroni/{{LIBNAME}}-python'},
+    project_urls={'GitHub': 'https://www.github.com/pimoroni/ht0740-python'},
     classifiers=classifiers,
-    packages=['{{LIBNAME}}'],
-    install_requires=[]
+    packages=['ht0740'],
+    install_requires=['i2cdevice']
 )
