@@ -12,25 +12,28 @@ class IOItem:
         self.inverted = inverted
 
     def state(self):
+        if self.inverted:
+            return ~self.i2c_object.OUTPUT.get_value() >> self.pin_io & 1
+        else:
+            return self.i2c_object.OUTPUT.get_value() >> self.pin_io & 1
 
-        return self.i2c_object.OUTPUT.get_value()
+    def set(self, state):
+        if self.enabled:
+            if self.inverted:
+                state = 1 - state
+            value = self.i2c_object.OUTPUT.get_value()
+            mask = 1 << self.pin_io
+            self.i2c_object.OUTPUT.set_value(((value & ~mask) | ((state << self.pin_io) & mask)))
 
     def on(self):
-        if self.enabled:
-
-            if self.inverted:
-                self.i2c_object.OUTPUT.set_value(self.state() & ~(1 << self.pin_io))
-
-            else:
-                self.i2c_object.OUTPUT.set_value(self.state() | (1 << self.pin_io))
+        self.set(1)
 
     def off(self):
-        if self.enabled:
-            if self.inverted:
-                self.i2c_object.OUTPUT.set_value(self.state() | (1 << self.pin_io))
+        self.set(0)
 
-            else:
-                self.i2c_object.OUTPUT.set_value(self.state() & ~(1 << self.pin_io))
+    def toggle(self):
+        if self.enabled:
+            self.i2c_object.OUTPUT.set_value(self.i2c_object.OUTPUT.get_value() ^ (1 << self.pin_io))
 
     def disable(self):
         self.i2c_object.CONFIG.set_value(self.i2c_object.CONFIG.get_value() | 1 << self.pin_io)
@@ -109,3 +112,7 @@ class Switch:
     def enable(self):
         self.led.enable()
         self.switch.enable()
+
+    def toggle(self):
+        self.led.toggle()
+        self.switch.toggle()
