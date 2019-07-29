@@ -1,4 +1,4 @@
-# HT0740 Big Damn Switch python library
+# HT0740 Switch
 
 [![Build Status](https://travis-ci.com/pimoroni/ht0740-python.svg?branch=master)](https://travis-ci.com/pimoroni/ht0740-python)
 [![Coverage Status](https://coveralls.io/repos/github/pimoroni/ht0740-python/badge.svg?branch=master)](https://coveralls.io/github/pimoroni/ht0740-python?branch=master)
