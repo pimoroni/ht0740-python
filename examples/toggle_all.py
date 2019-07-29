@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 
 import time
-import ht0740
+from ht0740 import HT0740
 
 print("""toggle_all.py - Toggles the switch and LED on and off continuously.
 
 Press Ctrl+C to exit.
 """)
 
-switch = ht0740.Switch()
+switch = HT0740()
 print("Enabling switch!")
 switch.enable()
 

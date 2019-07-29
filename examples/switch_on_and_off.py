@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 
 import time
-import ht0740
+from ht0740 import HT0740
 
 print("""switch_on_and_off.py - Switches the switch and LED using the on and off methods.
 
 Press Ctrl+C to exit.
 """)
 
-switch = ht0740.Switch()
+switch = HT0740()
 print("Enabling switch!")
 switch.enable()
 state = 1

@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 
 import time
-import ht0740
+from ht0740 import HT0740
 
 print("""switch_state.py - Switches the switch and LED using the state method.
 
 Press Ctrl+C to exit.
 """)
 
-switch = ht0740.Switch()
+switch = HT0740()
 print("Enabling switch!")
 switch.enable()
 state = 1

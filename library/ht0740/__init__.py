@@ -4,6 +4,7 @@ __version__ = '0.0.1'
 
 
 class IOItem:
+
     def __init__(self, i2c_object, pin_io, inverted=False):
         self.enabled = True
         self.status = False
@@ -45,6 +46,7 @@ class IOItem:
 
 
 class PCA9554A:
+
     def __init__(self, i2c_addr=0x38, i2c_dev=None):
         self._i2c_addr = i2c_addr
         self._i2c_dev = i2c_dev
@@ -83,7 +85,7 @@ class PCA9554A:
         self.switch_status = False
 
 
-class Switch:
+class HT0740:
 
     def __init__(self, i2c_addr=0x38, i2c_dev=None):
         self._i2c_addr = i2c_addr
