@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Copyright (c) 2016 Pimoroni
+Copyright (c) 2019 Pimoroni
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -42,7 +42,7 @@ setup(
     version='0.0.1',
     author='Gee Bartlett',
     author_email='gee@pimoroni.com',
-    description="""Python library for the HT0740 Big Damn Switch""",
+    description="""Python library for the HT0740 Switch""",
     long_description=open('README.rst').read() + '\n' + open('CHANGELOG.txt').read(),
     license='MIT',
     keywords='Raspberry Pi',

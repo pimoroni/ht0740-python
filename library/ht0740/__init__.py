@@ -69,7 +69,7 @@ class PCA9554A:
                 BitField('led', 0b00000001)
             )),
         ))
-        #  Set IO configureation for driving Switch and LED
+        #  Set IO configuration for driving switch and LED
         self._pca9554a.OUTPUT.set_switch(0)
         self._pca9554a.OUTPUT.set_led(1)
         self._pca9554a.CONFIG.set_switch(0)
