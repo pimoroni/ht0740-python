@@ -7,7 +7,7 @@ def test_setup():
     sys.modules['smbus'] = mock.Mock()
     sys.modules['smbus'].SMBus = MockSMBus
     import ht0740
-    switch = ht0740.Switch()
+    switch = ht0740.HT0740()
     switch.on()
     switch.off()
     switch.led.disable()
