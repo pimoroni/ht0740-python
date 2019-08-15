@@ -1,4 +1,4 @@
-# HT0740 Switch
+# HT0740 40V / 10A Switch Breakout
 
 [![Build Status](https://travis-ci.com/pimoroni/ht0740-python.svg?branch=master)](https://travis-ci.com/pimoroni/ht0740-python)
 [![Coverage Status](https://coveralls.io/repos/github/pimoroni/ht0740-python/badge.svg?branch=master)](https://coveralls.io/github/pimoroni/ht0740-python?branch=master)
