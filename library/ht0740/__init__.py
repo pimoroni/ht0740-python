@@ -4,7 +4,6 @@ __version__ = '0.0.1'
 
 
 class IOItem:
-
     def __init__(self, i2c_object, pin_io, inverted=False):
         self.enabled = True
         self.status = False
@@ -14,17 +13,17 @@ class IOItem:
 
     def state(self):
         if self.inverted:
-            return ~self.i2c_object.OUTPUT.get_value() >> self.pin_io & 1
+            return ~self.i2c_object.get('OUTPUT').value >> self.pin_io & 1
         else:
-            return self.i2c_object.OUTPUT.get_value() >> self.pin_io & 1
+            return self.i2c_object.get('OUTPUT').value >> self.pin_io & 1
 
     def set(self, state):
         if self.enabled:
             if self.inverted:
                 state = 1 - state
-            value = self.i2c_object.OUTPUT.get_value()
+            value = self.i2c_object.get('OUTPUT').value
             mask = 1 << self.pin_io
-            self.i2c_object.OUTPUT.set_value(((value & ~mask) | ((state << self.pin_io) & mask)))
+            self.i2c_object.set('OUTPUT', value=((value & ~mask) | ((state << self.pin_io) & mask)))
 
     def on(self):
         self.set(1)
@@ -34,19 +33,18 @@ class IOItem:
 
     def toggle(self):
         if self.enabled:
-            self.i2c_object.OUTPUT.set_value(self.i2c_object.OUTPUT.get_value() ^ (1 << self.pin_io))
+            self.i2c_object.set('OUTPUT', value=self.i2c_object.OUTPUT.get_value() ^ (1 << self.pin_io))
 
     def disable(self):
-        self.i2c_object.CONFIG.set_value(self.i2c_object.CONFIG.get_value() | 1 << self.pin_io)
+        self.i2c_object.set('CONFIG', value=self.i2c_object.CONFIG.get_value() | 1 << self.pin_io)
         self.enabled = False
 
     def enable(self):
-        self.i2c_object.CONFIG.set_value(self.i2c_object.CONFIG.get_value() & ~(1 << self.pin_io))
+        self.i2c_object.set('CONFIG', value=self.i2c_object.CONFIG.get_value() & ~(1 << self.pin_io))
         self.enabled = True
 
 
 class PCA9554A:
-
     def __init__(self, i2c_addr=0x38, i2c_dev=None):
         self._i2c_addr = i2c_addr
         self._i2c_dev = i2c_dev
@@ -75,10 +73,12 @@ class PCA9554A:
             )),
         ))
         #  Set IO configuration for driving switch and LED
-        self._pca9554a.OUTPUT.set_switch(0)
-        self._pca9554a.OUTPUT.set_led(1)
-        self._pca9554a.CONFIG.set_switch(0)
-        self._pca9554a.CONFIG.set_led(0)
+        self._pca9554a.set('OUTPUT',
+                           switch=0,
+                           led=1)
+        self._pca9554a.set('CONFIG',
+                           switch=0,
+                           led=0)
         self.led_enable = True
         self.switch_enabled = True
         self.led_status = False
@@ -86,7 +86,6 @@ class PCA9554A:
 
 
 class HT0740:
-
     def __init__(self, i2c_addr=0x38, i2c_dev=None):
         self._i2c_addr = i2c_addr
         self._i2c_dev = i2c_dev

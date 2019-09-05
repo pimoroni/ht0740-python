@@ -50,5 +50,5 @@ setup(
     project_urls={'GitHub': 'https://www.github.com/pimoroni/ht0740-python'},
     classifiers=classifiers,
     packages=['ht0740'],
-    install_requires=['i2cdevice']
+    install_requires=['i2cdevice>=0.0.6']
 )
