@@ -39,7 +39,7 @@ classifiers = ['Development Status :: 4 - Beta',
 
 setup(
     name='ht0740',
-    version='0.0.1',
+    version='0.0.2',
     author='Gee Bartlett',
     author_email='gee@pimoroni.com',
     description="""Python library for the HT0740 Switch""",
@@ -50,5 +50,5 @@ setup(
     project_urls={'GitHub': 'https://www.github.com/pimoroni/ht0740-python'},
     classifiers=classifiers,
     packages=['ht0740'],
-    install_requires=['i2cdevice']
+    install_requires=['i2cdevice>=0.0.6']
 )
